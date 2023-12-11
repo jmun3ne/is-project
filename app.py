@@ -9,7 +9,6 @@ import re
 import numpy as np
 import tensorflow as tf
 import tensorflow as tf
-
 from tensorflow.compat.v1 import ConfigProto
 from tensorflow.compat.v1 import InteractiveSession
 
@@ -37,9 +36,6 @@ MODEL_PATH ='model_inception (1).h5'
 # Load your trained model
 model = load_model(MODEL_PATH)
 
-
-
-
 def model_predict(img_path, model):
     print(img_path)
     img = image.load_img(img_path, target_size=(224, 224))
@@ -51,7 +47,6 @@ def model_predict(img_path, model):
     x=x/255
     x = np.expand_dims(x, axis=0)
    
-
     # Be careful how your trained model deals with the input
     # otherwise, it won't make correct prediction!
    # x = preprocess_input(x)
@@ -67,16 +62,12 @@ def model_predict(img_path, model):
     else:
         preds="The leaf belongs to the healthy class"
         
-    
-    
     return preds
-
 
 @app.route('/', methods=['GET'])
 def index():
     # Main page
     return render_template('index.html')
-
 
 @app.route('/predict', methods=['GET', 'POST'])
 def upload():
@@ -95,7 +86,6 @@ def upload():
         result=preds
         return result
     return None
-
 
 if __name__ == '__main__':
     app.run(port=5001,debug=True)
